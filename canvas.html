@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>canvas learning</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="700"
+      height="700"
+      style="background-color: aquamarine"
+    >
+    </canvas>
+    <input type="range" id="recOneSize" min="0" max="600" />
+    <script>
+
+
+    const canvas = document.getElementById("canvas");
+    const recOneSize = document.getElementById("recOneSize");
+
+
+    let rectSize = 200;
+    var rect1Size = rectSize;
+    const rectStroke = rect1Size * 0.15;
+    const rect1Pos = 100;
+    const rect2Pos = rect1Pos + rectStroke * 2;
+    const rect2Size = rect1Size - rectStroke * 4;
+
+    const ctx = canvas.getContext("2d");
+
+
+      recOneSize.addEventListener("input", async (e) => {
+        rectSize = e.target.value;
+        //re-draw rectangle
+        drawRect();
+      });
+
+      function drawRect() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //draw first rectangle
+        ctx.beginPath();
+        ctx.rect(rect1Pos, rect1Pos, rect1Size, rect1Size);
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = rectStroke;
+        ctx.stroke();
+
+        //draw second rectangle
+        ctx.beginPath();
+        ctx.rect(rect2Pos, rect2Pos, rect2Size, rect2Size);
+        ctx.strokeStyle = "blue";
+        ctx.strokeWidth = 20;
+        ctx.lineWidth = rectStroke;
+        ctx.stroke();
+      }
+
+
+      drawRect();
+
+    </script>
+  </body>
+</html>
